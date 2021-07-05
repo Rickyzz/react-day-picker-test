@@ -1,0 +1,14 @@
+{
+  "name": "react-day-picker examples/input-moment",
+  "version": "0.0.0",
+  "description": "A simple example deployed using react-codesandboxer",
+  "main": "index.js",
+  "dependencies": {
+    "react-day-picker": "latest",
+    "react-helmet": "latest",
+    "moment": "latest",
+    "date-fns": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}
