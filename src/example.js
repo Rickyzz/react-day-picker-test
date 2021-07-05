@@ -13,11 +13,14 @@ export default class Sender extends React.Component {
     };
   }
   handleDayChange = (day) => {
-    console.log(day);
+    console.log("chosenDate=" + day);
+    let dfinal = moment(day).format(FORMAT);
+    console.log("final answer = " + dfinal);
     this.setState({ selectedDay: day });
   };
   render() {
     let startDate = "2021-09-20";
+
     return (
       <DayPicker onDayChange={this.handleDayChange} startDate={startDate} />
     );
@@ -39,8 +42,8 @@ class DayPicker extends React.Component {
   };
 
   render() {
-    let { onDayChange } = this.props;
-    var date = moment("2014-02-27").format(FORMAT);
+    let { onDayChange, startDate } = this.props;
+    var date = moment(startDate).format(FORMAT);
     console.log("start");
     console.log(date);
     return (
@@ -53,6 +56,14 @@ class DayPicker extends React.Component {
           placeholder={date}
           //placeholder={`${formatDate(new Date(2021, 10, 22), FORMAT)}`}
           onDayChange={onDayChange}
+          inputProps={{ style: { width: 400 } }}
+          dayPickerProps={
+            {
+              //month: new Date(2018, 10),
+              //showWeekNumbers: true,
+              //todayButton: 'Today',
+            }
+          }
         />
       </div>
     );
