@@ -1,5 +1,5 @@
 import React from "react";
-
+import moment from "moment";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 
@@ -17,11 +17,14 @@ export default class Sender extends React.Component {
     this.setState({ selectedDay: day });
   };
   render() {
-    return <Example onDayChange={this.handleDayChange} />;
+    let startDate = "2021-09-20";
+    return (
+      <DayPicker onDayChange={this.handleDayChange} startDate={startDate} />
+    );
   }
 }
 
-class Example extends React.Component {
+class DayPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +32,17 @@ class Example extends React.Component {
     };
   }
 
-  handleDayChange = (day) => {
-    console.log(day);
+  handleDayChangeOld = (day) => {
+    let { startDate } = this.props;
+    console.log(startDate);
     this.setState({ selectedDay: day });
   };
 
   render() {
+    let { onDayChange } = this.props;
+    var date = moment("2014-02-27").format(FORMAT);
+    console.log("start");
+    console.log(date);
     return (
       <div>
         <p>In English (default):</p>
@@ -42,8 +50,9 @@ class Example extends React.Component {
           formatDate={formatDate}
           parseDate={parseDate}
           format={FORMAT}
-          placeholder={`${formatDate(new Date(2021, 10, 22), FORMAT)}`}
-          onDayChange={this.handleDayChange}
+          placeholder={date}
+          //placeholder={`${formatDate(new Date(2021, 10, 22), FORMAT)}`}
+          onDayChange={onDayChange}
         />
       </div>
     );
